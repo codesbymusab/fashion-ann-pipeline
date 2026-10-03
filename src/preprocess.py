@@ -46,6 +46,7 @@ def main():
         np.save(OUT_DIR / f"{name}.npy", arr)
 
     print(f"Saved processed data to {OUT_DIR}: train={x_tr.shape}, val={x_val.shape}, test={x_test.shape}")
+    print(f"[debug] val fraction = {len(x_val) / len(x_train):.2%}")
 
 
 if __name__ == "__main__":
