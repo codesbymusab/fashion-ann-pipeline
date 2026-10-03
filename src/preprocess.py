@@ -14,9 +14,14 @@ def load_params():
         return yaml.safe_load(f)["preprocess"]
 
 
+FASHION_MEAN, FASHION_STD = 0.2860, 0.3530
+
+
 def normalize(x):
-    """Main approach: scale to [0, 1], then center to [-0.5, 0.5]."""
-    return x.astype("float32") / 255.0 - 0.5
+    """Merged approach: scale to [0, 1] (shared by both branches), then standardize."""
+    x = x.astype("float32") / 255.0
+    return (x - FASHION_MEAN) / FASHION_STD
+
 
 
 def main():
