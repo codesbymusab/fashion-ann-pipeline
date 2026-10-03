@@ -2,81 +2,120 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Assignment 3 Report - Git + DVC + Google Drive</title>
+<title>Assignment 3 Academic Technical Report</title>
 <style>
   @page {
     size: A4;
-    margin: 10mm 12mm 10mm 12mm;
+    margin: 12mm 15mm 12mm 15mm;
   }
   * { box-sizing: border-box; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: #1f2328;
+    font-family: "Times New Roman", Times, Georgia, serif;
+    color: #111111;
     background: #ffffff;
     margin: 0;
     padding: 0;
-    font-size: 8.8pt;
-    line-height: 1.35;
+    font-size: 8.9pt;
+    line-height: 1.32;
+    text-rendering: optimizeLegibility;
   }
   .page {
     page-break-after: always;
     height: 100%;
-    max-height: 277mm;
+    max-height: 273mm;
     position: relative;
-    padding-bottom: 5mm;
+    padding-bottom: 2mm;
   }
   .page:last-child {
     page-break-after: avoid;
   }
-  .header-card {
-    border-bottom: 2px solid #0969da;
+
+  /* Academic Header */
+  .paper-header {
+    text-align: center;
+    border-bottom: 1.5px solid #1a2a40;
     padding-bottom: 6px;
     margin-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
   }
-  .header-title h1 {
-    margin: 0;
-    font-size: 14pt;
-    color: #0969da;
-    font-weight: 700;
+  .paper-title {
+    font-size: 15pt;
+    font-weight: bold;
+    color: #0f2537;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.2px;
   }
-  .header-title h2 {
-    margin: 2px 0 0 0;
-    font-size: 9.5pt;
-    color: #57606a;
-    font-weight: 600;
-  }
-  .meta-box {
-    text-align: right;
-    font-size: 8pt;
-    color: #24292f;
-  }
-  .meta-box strong { color: #0969da; }
-  h2.section-header {
+  .paper-subtitle {
     font-size: 10pt;
-    color: #ffffff;
-    background: #24292f;
-    padding: 3px 8px;
-    border-radius: 3px;
-    margin: 8px 0 5px 0;
-    font-weight: 600;
+    font-style: italic;
+    color: #333333;
+    margin-bottom: 6px;
+  }
+  .author-block {
+    font-size: 8.8pt;
+    color: #222222;
+    margin-bottom: 2px;
+  }
+  .author-block strong { color: #0f2537; font-size: 9.5pt; }
+  .author-meta {
+    font-size: 8pt;
+    color: #555555;
+    font-style: italic;
+  }
+
+  /* Abstract Box */
+  .abstract-box {
+    background: #f7f9fa;
+    border: 1px solid #dcdfe3;
+    border-left: 3.5px solid #0f2537;
+    padding: 6px 10px;
+    margin: 6px 0 8px 0;
+    font-size: 8.2pt;
+    text-align: justify;
+    line-height: 1.35;
+  }
+  .abstract-title {
+    font-weight: bold;
+    font-style: italic;
+    color: #0f2537;
+  }
+  .keywords {
+    margin-top: 3px;
+    font-size: 8pt;
+    color: #444444;
+  }
+  .keywords strong { color: #0f2537; }
+
+  /* Section Headings */
+  h2.sec-heading {
+    font-size: 10pt;
+    font-weight: bold;
+    color: #0f2537;
+    border-bottom: 1px solid #0f2537;
+    padding-bottom: 2px;
+    margin: 7px 0 4px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
     display: flex;
     justify-content: space-between;
   }
-  h3.sub-header {
+  h3.subsec-heading {
     font-size: 9pt;
-    color: #0969da;
-    margin: 5px 0 3px 0;
-    font-weight: 600;
-    border-bottom: 1px solid #d0d7de;
-    padding-bottom: 2px;
+    font-weight: bold;
+    color: #1a3c61;
+    margin: 5px 0 2px 0;
   }
-  p { margin: 0 0 4px 0; }
+
+  p { margin: 0 0 4px 0; text-align: justify; }
+
+  /* Layout grids */
   .grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .grid-2-asym {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
     gap: 8px;
   }
   .grid-3 {
@@ -84,74 +123,61 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 6px;
   }
-  .card {
-    background: #f6f8fa;
-    border: 1px solid #d0d7de;
-    border-radius: 4px;
-    padding: 6px;
-    font-size: 8pt;
-  }
-  .shot-box {
-    border: 1px solid #30363d;
-    border-radius: 4px;
+
+  /* Figures & Captions */
+  .fig-card {
+    border: 1px solid #222a35;
+    border-radius: 3px;
     overflow: hidden;
-    margin: 4px 0;
+    margin: 3px 0 2px 0;
     background: #0d1117;
   }
-  .shot-box img {
+  .fig-card img {
     width: 100%;
     display: block;
   }
-  .shot-caption {
-    font-size: 7.5pt;
-    color: #57606a;
-    text-align: center;
+  .fig-caption {
+    font-size: 7.6pt;
     font-style: italic;
-    margin-top: 1px;
-    margin-bottom: 4px;
+    color: #444444;
+    text-align: center;
+    margin-bottom: 5px;
   }
-  table.metric-table {
+
+  /* Tables */
+  table.acad-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 8pt;
+    font-size: 7.9pt;
     margin: 4px 0;
   }
-  table.metric-table th, table.metric-table td {
-    border: 1px solid #d0d7de;
-    padding: 3px 6px;
+  table.acad-table th, table.acad-table td {
+    border: 1px solid #b0b7be;
+    padding: 3px 5px;
     text-align: left;
   }
-  table.metric-table th {
-    background: #eaeef2;
-    font-weight: 600;
-    color: #24292f;
+  table.acad-table th {
+    background: #eef2f5;
+    color: #0f2537;
+    font-weight: bold;
   }
-  table.metric-table tr:nth-child(even) { background: #f6f8fa; }
-  .alert-info {
-    background: #ddf4ff;
-    border-left: 3px solid #0969da;
-    padding: 4px 8px;
-    font-size: 7.8pt;
-    color: #0969da;
-    border-radius: 0 3px 3px 0;
-    margin: 4px 0;
-  }
-  .alert-success {
-    background: #dafbe1;
-    border-left: 3px solid #1a7f37;
-    padding: 4px 8px;
-    font-size: 7.8pt;
-    color: #1a7f37;
-    border-radius: 0 3px 3px 0;
-    margin: 4px 0;
+  table.acad-table tr:nth-child(even) { background: #fafbfc; }
+
+  .callout-box {
+    background: #fdfdfe;
+    border: 1px solid #c9d2db;
+    padding: 4px 7px;
+    border-radius: 3px;
+    font-size: 8pt;
+    margin: 3px 0;
   }
   code {
-    background: #eff1f3;
-    padding: 1px 3px;
-    border-radius: 3px;
     font-family: Consolas, monospace;
     font-size: 7.8pt;
-    color: #cf222e;
+    background: #f0f3f6;
+    padding: 0 2px;
+    border-radius: 2px;
+    color: #a01111;
   }
 </style>
 </head>
@@ -159,128 +185,111 @@
 
 <!-- ================= PAGE 1 ================= -->
 <div class="page">
-  <div class="header-card">
-    <div class="header-title">
-      <h1>Assignment 3: End-to-End MLOps Pipeline Report</h1>
-      <h2>Git Workflow, DVC Automation, Google Drive Remote & Conflict Resolution</h2>
+  <div class="paper-header">
+    <div class="paper-title">End-to-End Machine Learning Versioning and Pipeline Orchestration Using Git, DVC, and Cloud Remote Storage</div>
+    <div class="paper-subtitle">Academic Technical Report — CS4069 Machine Learning Operations (MLOps)</div>
+    <div class="author-block">
+      <strong>Muhammad Musab (Roll No: 23L-0806)</strong> | Department of Computer Science<br>
+      National University of Computer & Emerging Sciences (FAST-NUCES), Lahore, Pakistan
     </div>
-    <div class="meta-box">
-      <div><strong>Student:</strong> Muhammad Musab (Roll No: 23L-0806)</div>
-      <div><strong>Repo:</strong> github.com/codesbymusab/fashion-ann-pipeline</div>
-      <div><strong>Remote:</strong> gdrive://fashion-ann-dvc-store (1FdsWzNpKhXq...)</div>
+    <div class="author-meta">
+      Institutional Contact: <code>l230806@lhr.nu.edu.pk</code> &nbsp;|&nbsp; GitHub Repository: <code>codesbymusab/fashion-ann-pipeline</code>
     </div>
   </div>
 
-  <div class="alert-success">
-    <strong>Executive Summary:</strong> Successfully implemented full end-to-end versioning across Git and DVC. Built a modular Fashion-MNIST ANN pipeline, integrated a Google Drive remote with OAuth test credentials, tracked experiments across <code>v1</code> and <code>v2</code>, and demonstrated reproducible merge conflict resolution in code and DVC locks.
+  <div class="abstract-box">
+    <span class="abstract-title">Abstract</span>—Managing machine learning pipelines requires decoupled versioning paradigms: source code is tracked via directed acyclic graphs in Git, while large-scale binary artifacts (raw datasets, transformed tensors, model weights) must be tracked via content-addressable storage to prevent repository bloating. This report presents an empirical study and end-to-end implementation of an MLOps pipeline on the Fashion-MNIST benchmark utilizing Git, Data Version Control (DVC), and Google Drive. We analyze advanced Git workflows including stash recovery, atomic file renames, non-fast-forward hotfix integration, and rebase conflict resolution. Next, we construct a 4-stage modular pipeline governed by <code>dvc.yaml</code> and <code>params.yaml</code>, demonstrating automated reproducibility and selective stage-skipping across hyperparameter modifications (dense units: 128 vs 256). Finally, we simulate a distributed team collaboration scenario, reproducing the concurrent emergence of a Python textual code conflict and an md5 hash collision in <code>dvc.lock</code>, followed by an authoritative reconciliation strategy. All metrics, audits, and reproducibility proofs are verified.
+    <div class="keywords"><strong>Keywords:</strong> Machine Learning Operations (MLOps), Git, Data Version Control (DVC), Google Drive Remote, Artificial Neural Networks (ANN), Data Provenance, Merge Conflict Reconciliation.</div>
   </div>
 
-  <h2 class="section-header"><span>Part A: Advanced Git Workflows & Demonstrations</span><span>Tasks A1 – A5</span></h2>
+  <h2 class="sec-heading"><span>1. Introduction & Methodology</span><span>Section I</span></h2>
+  <p>In production MLOps architectures, code and data evolve along distinct lifecycles. Standard software engineering version control tools are optimized for delta-compressed UTF-8 source files. Storing high-dimensional numerical matrices (such as Fashion-MNIST's 60,000 image arrays) directly in Git causes severe repository bloat and slows down distributed operations. DVC addresses this by generating lightweight cryptographic hash pointers (md5) tracked in Git, while delegating heavy payloads to remote cloud storage. In this work, the architecture is realized in <code>fashion-ann-pipeline</code>.</p>
 
+  <h2 class="sec-heading"><span>2. Part A: Advanced Git Workflows & State Analysis</span><span>Section II (A1–A5)</span></h2>
   <div class="grid-2">
     <div>
-      <h3 class="sub-header">A1 & A2: Initialization & Branching</h3>
-      <p>Initialized repository with <code>main</code> branch, created <code>README.md</code> with initial typo (<code>Pipelnie</code>), configured <code>.gitignore</code> (ignoring <code>venv/</code>, <code>__pycache__/</code>, <code>*.h5</code>), and created <code>dev</code> branch for iterative development.</p>
-
-      <h3 class="sub-header">A5: Git Stash & Branch Switching</h3>
-      <p>Modified <code>src/preprocess.py</code> with a debug print without committing. Git blocked branch switching to <code>main</code> to prevent overwriting uncommitted changes. Stashed work with <code>git stash push</code>, cleanly switched to <code>main</code>, and subsequently restored on <code>dev</code> using <code>git stash pop</code>.</p>
-      <div class="shot-box">
-        <img src="screenshots/A5_git_stash.png" alt="Git Stash">
-      </div>
-      <div class="shot-caption">Figure 1: Git stash blocking, push, list and pop lifecycle (A5).</div>
+      <h3 class="subsec-heading">2.1 Initialization, Branching & Hygiene (A1, A2)</h3>
+      <p>The Git repository was initialized on <code>main</code>. An intentional defect (<code># Fashion-MNIST ANN Pipelnie</code>) was seeded into <code>README.md</code> to model an upstream issue. A defensive <code>.gitignore</code> was committed to ignore virtual environments, bytecode, and <code>*.h5</code> files. Branch <code>dev</code> was established for modular development.</p>
+      
+      <h3 class="subsec-heading">2.2 Work-in-Progress Isolation via Git Stash (A5)</h3>
+      <p>While on <code>dev</code>, an uncommitted debug statement was introduced into <code>src/preprocess.py</code>. Switching to <code>main</code> was halted by Git's index-protection guard. Stashing isolated the uncommitted state (<code>git stash push</code>), allowing a clean branch switch and subsequent restoration via <code>git stash pop</code> (Figure 1).</p>
+      <div class="fig-card"><img src="screenshots/A5_git_stash.png" alt="Stash"></div>
+      <div class="fig-caption">Figure 1: Git stash lifecycle preventing uncommitted change overwrites (A5).</div>
     </div>
 
     <div>
-      <h3 class="sub-header">A3: Log Variants Analysis</h3>
-      <div class="shot-box">
-        <img src="screenshots/A3_git_log_variants.png" alt="Log Variants">
-      </div>
-      <div class="shot-caption">Figure 2: Commit topology graph and commit range logs (A3).</div>
-
-      <table class="metric-table">
-        <tr><th>Command</th><th>Unique Value Demonstrated</th></tr>
-        <tr><td><code>git log --oneline --graph --all</code></td><td>Visualizes branch divergence, merges, and relative topology.</td></tr>
-        <tr><td><code>git log --stat -3</code></td><td>Displays touched files and insertion/deletion counts per commit.</td></tr>
-        <tr><td><code>git log -p -1</code></td><td>Shows complete line-by-line patch diff of the latest commit.</td></tr>
-        <tr><td><code>git log main..dev</code></td><td>Filters only unmerged commits present on <code>dev</code> but absent from <code>main</code>.</td></tr>
+      <h3 class="subsec-heading">2.3 Topology & History Inspection (A3)</h3>
+      <div class="fig-card"><img src="screenshots/A3_git_log_variants.png" alt="Log Variants"></div>
+      <div class="fig-caption">Figure 2: Commit topology graph and commit range filtering (A3).</div>
+      <table class="acad-table">
+        <thead><tr><th>Command</th><th>Analytical Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><code>git log --graph --all</code></td><td>Renders topological divergence, merge points, and active branch tips.</td></tr>
+          <tr><td><code>git log --stat -3</code></td><td>Quantifies modified files and churn (insertions/deletions) per commit.</td></tr>
+          <tr><td><code>git log -p -1</code></td><td>Outputs granular line-by-line patch delta of the latest commit.</td></tr>
+          <tr><td><code>git log main..dev</code></td><td>Filters unmerged commits present on <code>dev</code> but absent from <code>main</code>.</td></tr>
+        </tbody>
       </table>
     </div>
   </div>
 
-  <h3 class="sub-header">A4: Git Diff Variants & Two-Dot vs Three-Dot Analysis</h3>
+  <h3 class="subsec-heading">2.4 Relative Diff Analysis: Two-Dot vs Three-Dot Syntax (A4)</h3>
   <div class="grid-2">
     <div>
-      <div class="shot-box">
-        <img src="screenshots/A4_git_diff_variants.png" alt="Git Diff Variants">
-      </div>
-      <div class="shot-caption">Figure 3: Unstaged, staged, and branch comparison diffs (A4).</div>
+      <div class="fig-card"><img src="screenshots/A4_git_diff_variants.png" alt="Diff Variants"></div>
+      <div class="fig-caption">Figure 3: Unstaged, staged, and relative branch comparisons (A4).</div>
     </div>
-    <div class="card">
-      <p><strong>Two-Dot (<code>main..dev</code>) vs Three-Dot (<code>main...dev</code>) Difference:</strong></p>
-      <p>• <strong>Two-dot diff (<code>git diff main..dev</code>):</strong> Directly compares the tip commits of both branches. It incorporates all differences between them, meaning hotfixes or commits made exclusively on <code>main</code> will appear as negative/reversed changes.</p>
-      <p>• <strong>Three-dot diff (<code>git diff main...dev</code>):</strong> Compares <code>dev</code> directly against the <em>merge-base</em> (common ancestor commit where <code>dev</code> was branched). It isolates exclusively the work accomplished on <code>dev</code>, filtering out unrelated changes from <code>main</code>.</p>
+    <div class="callout-box">
+      <p><strong>Two-Dot (<code>main..dev</code>) vs Three-Dot (<code>main...dev</code>) Mathematical Semantics:</strong></p>
+      <p>• <strong>Two-dot diff (<code>git diff main..dev</code>):</strong> Directly computes the symmetric difference between the branch tips. It incorporates all disparate commits, meaning changes committed exclusively to <code>main</code> appear as reverse/negative diffs in <code>dev</code>.</p>
+      <p>• <strong>Three-dot diff (<code>git diff main...dev</code>):</strong> Computes the merge-base (common ancestor) between <code>main</code> and <code>dev</code>, comparing <code>dev</code> exclusively against this ancestor. It strictly isolates the feature contributions of <code>dev</code>, filtering out unrelated upstream commits on <code>main</code>.</p>
     </div>
   </div>
 </div>
 
 <!-- ================= PAGE 2 ================= -->
 <div class="page">
-  <div class="header-card">
-    <div class="header-title">
-      <h1>Assignment 3: End-to-End MLOps Pipeline Report</h1>
-      <h2>Git Operations (A6–A8) & Fashion-MNIST Pipeline (Part B)</h2>
-    </div>
-    <div class="meta-box">
-      <div><strong>Student:</strong> Muhammad Musab (Roll No: 23L-0806)</div>
-      <div><strong>Page:</strong> 2 of 4</div>
-    </div>
+  <div class="paper-header" style="padding-bottom: 3px; margin-bottom: 6px;">
+    <div class="paper-title" style="font-size: 11pt;">Part A Continued (A6–A8) & Part B: Fashion-MNIST ANN Pipeline</div>
+    <div class="author-meta">CS4069 Technical Report | Student: Muhammad Musab (23L-0806) | Page 2 of 4</div>
   </div>
 
-  <h2 class="section-header"><span>Part A Continued: Rebase, Reset & Organization</span><span>Tasks A6 – A8</span></h2>
-
+  <h2 class="sec-heading"><span>2. Part A Continued: Rebase, Reset & Atomic Organization</span><span>Section II (A6–A8)</span></h2>
   <div class="grid-2">
     <div>
-      <h3 class="sub-header">A6: Hotfix Branch, Merge & Rebase Conflict</h3>
-      <p>Branched <code>hotfix/readme-typo</code> from <code>main</code>, corrected the title, and merged with <code>--no-ff</code> to preserve merge history. Rebasing <code>dev</code> onto <code>main</code> encountered a content conflict on <code>README.md</code> line 1. Resolved by retaining both corrected spelling and feature description, creating a clean linear history.</p>
-      <div class="shot-box">
-        <img src="screenshots/A6_rebase_conflict.png" alt="Rebase Conflict">
-      </div>
-      <div class="shot-caption">Figure 4: Rebase conflict stoppage, marker inspection, and linear continuation (A6).</div>
+      <h3 class="subsec-heading">2.5 Hotfix Branching & Rebase Conflict Resolution (A6)</h3>
+      <p>A production fix branch <code>hotfix/readme-typo</code> was spawned from <code>main</code>, corrected, and merged via <code>git merge --no-ff</code> to explicitly preserve the merge node. Rebasing <code>dev</code> onto <code>main</code> encountered a content collision on line 1 of <code>README.md</code>. Conflict markers were manually reconciled to unify the fix and description, staged, and finalized via <code>git rebase --continue</code>, yielding a linear commit history (Figure 4).</p>
+      <div class="fig-card"><img src="screenshots/A6_rebase_conflict.png" alt="Rebase Conflict"></div>
+      <div class="fig-caption">Figure 4: Upstream hotfix merge, rebase stoppage on README.md, and linear continuation (A6).</div>
     </div>
 
     <div>
-      <h3 class="sub-header">A7: Soft Reset vs Hard Reset Scenarios</h3>
-      <div class="shot-box">
-        <img src="screenshots/A7_git_reset.png" alt="Git Reset">
-      </div>
-      <div class="shot-caption">Figure 5: Soft reset (staged on disk) vs hard reset (purged working tree) (A7).</div>
-      <div class="card">
-        <p><strong>Reset Mechanics:</strong> <code>--soft</code> shifts only the <code>HEAD</code> pointer back one commit; changes remain indexed (staged) and preserved on disk. <code>--hard</code> shifts <code>HEAD</code> and resets both index and working tree, permanently discarding changes from disk.</p>
+      <h3 class="subsec-heading">2.6 Reset Mechanics: Soft vs Hard State Recovery (A7)</h3>
+      <div class="fig-card"><img src="screenshots/A7_git_reset.png" alt="Git Reset"></div>
+      <div class="fig-caption">Figure 5: Soft reset (staged on disk) vs hard reset (purged working tree) (A7).</div>
+      <div class="callout-box">
+        <p><strong>Operational Comparison:</strong> <code>--soft</code> rewinds only the branch pointer (<code>HEAD</code>); modifications remain staged in the index and preserved on disk for commit consolidation. <code>--hard</code> rewinds <code>HEAD</code>, index, and working tree synchronously, permanently expunging changes from disk.</p>
       </div>
     </div>
   </div>
 
   <div class="grid-2" style="margin-top: 4px;">
     <div>
-      <h3 class="sub-header">A8: Atomic File Moves & Deletion</h3>
-      <p>Added helper <code>check_data.py</code> and notes <code>scratch_notes.txt</code>. Executed <code>git mv check_data.py src/check_data.py</code> and <code>git rm scratch_notes.txt</code>. <code>git show --stat -M HEAD</code> verified Git detected a 100% atomic rename rather than a delete/add pair.</p>
-      <div class="shot-box">
-        <img src="screenshots/A8_git_mv_rm.png" alt="Git Mv and Rm">
-      </div>
-      <div class="shot-caption">Figure 6: Git atomic rename tracking and file deletion (A8).</div>
+      <h3 class="subsec-heading">2.7 Atomic File Operations & Rename Tracking (A8)</h3>
+      <p>Auxiliary files <code>check_data.py</code> and <code>scratch_notes.txt</code> were tracked. Executing <code>git mv check_data.py src/check_data.py</code> and <code>git rm scratch_notes.txt</code> demonstrated Git's tree similarity heuristics: <code>git show --stat -M HEAD</code> verified a 100% rename detection rather than a delete/create cycle (Figure 6).</p>
+      <div class="fig-card"><img src="screenshots/A8_git_mv_rm.png" alt="Git Mv and Rm"></div>
+      <div class="fig-caption">Figure 6: Git similarity index showing 100% atomic rename detection (A8).</div>
     </div>
 
     <div>
-      <h2 class="section-header" style="margin-top: 0;"><span>Part B: Fashion-MNIST ANN Pipeline</span><span>Tasks B1 – B4</span></h2>
-      <p>Built a 4-stage modular architecture reading from <code>params.yaml</code>:</p>
-      <ul style="padding-left: 16px; margin: 3px 0;">
-        <li><strong>B1 <code>src/prepare.py</code>:</strong> Loads raw Fashion-MNIST, saves deterministic <code>.npy</code> files to <code>data/raw/</code>.</li>
-        <li><strong>B2 <code>src/preprocess.py</code>:</strong> Scales pixels to [0, 1], carves 10% stratified validation split, saves to <code>data/processed/</code>.</li>
-        <li><strong>B3 <code>src/train.py</code>:</strong> Compiles sequential ANN (<code>Flatten → Dense(ReLU) → Dropout(0.2) → Dense(10, Softmax)</code>). Logs history to <code>history.csv</code>, saves <code>models/model.h5</code>.</li>
-        <li><strong>B4 <code>src/evaluate.py</code>:</strong> Evaluates test set, writes <code>metrics.json</code> and saves <code>confusion_matrix.png</code>.</li>
-      </ul>
-      <div class="alert-info" style="margin-top: 4px;">
-        <strong>Baseline Training Performance:</strong> Validation accuracy converged to <strong>89.02%</strong> with validation loss of <strong>0.3064</strong> over 10 epochs.
+      <h2 class="sec-heading" style="margin-top: 0;"><span>3. Part B: Fashion-MNIST ANN Pipeline</span><span>Section III</span></h2>
+      <p>A decoupled 4-stage pipeline was engineered to process Fashion-MNIST (60,000 train, 10,000 test arrays):</p>
+      <p>• <strong>B1 Ingestion (<code>src/prepare.py</code>):</strong> Ingests dataset via <code>keras.datasets</code>; writes deterministic <code>.npy</code> files to <code>data/raw/</code> to ensure cryptographic hash stability.</p>
+      <p>• <strong>B2 Preprocessing (<code>src/preprocess.py</code>):</strong> Scales pixels to [0, 1], carves a 10% stratified validation split, and outputs 6 array files to <code>data/processed/</code>.</p>
+      <p>• <strong>B3 Neural Modeling (<code>src/train.py</code>):</strong> Builds sequential ANN (<code>Flatten &rarr; Dense(ReLU) &rarr; Dropout(0.2) &rarr; Dense(10, Softmax)</code>). Logs history to <code>history.csv</code>, saves weights to <code>models/model.h5</code>.</p>
+      <p>• <strong>B4 Evaluation (<code>src/evaluate.py</code>):</strong> Computes test metrics, serializes <code>metrics.json</code>, and renders <code>confusion_matrix.png</code>.</p>
+      <div class="callout-box" style="background:#eef7ee; border-color:#8ec98e;">
+        <strong>Empirical Convergence:</strong> Baseline training across 10 epochs converged at <strong>89.02%</strong> validation accuracy and <strong>0.3064</strong> validation loss.
       </div>
     </div>
   </div>
@@ -288,150 +297,115 @@
 
 <!-- ================= PAGE 3 ================= -->
 <div class="page">
-  <div class="header-card">
-    <div class="header-title">
-      <h1>Assignment 3: End-to-End MLOps Pipeline Report</h1>
-      <h2>DVC Cloud Remote (Part C) & Pipeline Automation (Part D)</h2>
+  <div class="paper-header" style="padding-bottom: 3px; margin-bottom: 6px;">
+    <div class="paper-title" style="font-size: 11pt;">Part C: Cloud Remote Storage & Part D: Pipeline Orchestration</div>
+    <div class="author-meta">CS4069 Technical Report | Student: Muhammad Musab (23L-0806) | Page 3 of 4</div>
+  </div>
+
+  <h2 class="sec-heading"><span>4. Part C: DVC Remote Storage & OAuth Security Hardening</span><span>Section IV</span></h2>
+  <div class="grid-2">
+    <div>
+      <p>DVC was initialized on <code>dev</code> with default remote <code>gdrive_storage</code> pointing to Google Drive folder ID <code>1FdsWzNpKhXq4zAcrmCMqHFjtrnoguXLS</code>. Public default OAuth credentials were replaced with a custom Google Cloud Desktop OAuth application to circumvent quota exhaustion.</p>
+      <p><strong>Credential Isolation & Security Audit:</strong> Non-sensitive metadata (Client ID, remote URL) was committed to <code>.dvc/config</code>. The client secret was isolated in <code>.dvc/config.local</code> using <code>--local</code>. Verified via <code>git check-ignore -v .dvc/config.local</code> and <code>git ls-files | grep -iE 'cred|token|secret'</code> (0 leaks). 14 files (~275 MB) were uploaded successfully (Figure 7).</p>
+      <div class="fig-card"><img src="screenshots/BC_dvc_setup_push.png" alt="DVC Cloud Setup"></div>
+      <div class="fig-caption">Figure 7: Remote configuration, local secret isolation, security audit, and Drive sync (Part C).</div>
     </div>
-    <div class="meta-box">
-      <div><strong>Student:</strong> Muhammad Musab (Roll No: 23L-0806)</div>
-      <div><strong>Page:</strong> 3 of 4</div>
+
+    <div>
+      <h2 class="sec-heading" style="margin-top: 0;"><span>5. Part D: DVC Pipeline Automation & Tuning</span><span>Section V</span></h2>
+      <p>Tracking of artifacts was handed from static <code>.dvc</code> pointers to an executable contract in <code>dvc.yaml</code>. Stages explicitly define dependencies (<code>deps</code>), parameters (<code>params</code>), outputs (<code>outs</code>), and metrics.</p>
+      <div class="fig-card"><img src="screenshots/D_dvc_pipeline_v1_v2.png" alt="Pipeline Reproduction"></div>
+      <div class="fig-caption">Figure 8: Baseline run (v1), parameter tuning, intelligent skipping, and diff (Part D).</div>
     </div>
   </div>
 
-  <h2 class="section-header"><span>Part C: DVC Remote Storage with Google Drive</span><span>Tasks C1 – C5</span></h2>
-
+  <h3 class="subsec-heading">5.1 Intelligent Stage Skipping & Comparative Evaluation (v1 vs v2)</h3>
   <div class="grid-2">
     <div>
-      <p>Configured Google Drive as remote storage (<code>gdrive://1FdsWzNpKhXq4zAcrmCMqHFjtrnoguXLS</code>). Implemented custom Google Cloud OAuth Desktop Application credentials to avoid public shared-client access blocks.</p>
-      <p><strong>Credential Security Verification:</strong> The client secret was configured with <code>--local</code>, isolating it inside <code>.dvc/config.local</code>. Running <code>git check-ignore -v .dvc/config.local</code> confirms it is ignored by Git. <code>git ls-files | grep -iE 'cred|token|secret'</code> confirms 0 credentials leaked.</p>
-      <div class="shot-box">
-        <img src="screenshots/BC_dvc_setup_push.png" alt="DVC Google Drive Setup">
-      </div>
-      <div class="shot-caption">Figure 7: DVC remote configuration, credential check, and 14 files pushed to Drive (Part C).</div>
-    </div>
-
-    <div>
-      <h2 class="section-header" style="margin-top: 0;"><span>Part D: DVC Pipeline & Experiments</span><span>Tasks D1 – D5</span></h2>
-      <p>Handed artifact tracking from <code>.dvc</code> files to <code>dvc.yaml</code>. Authoring explicit dependencies and parameter locks ensures deterministic stage execution.</p>
-      <div class="shot-box">
-        <img src="screenshots/D_dvc_pipeline_v1_v2.png" alt="DVC Pipeline Reproduction">
-      </div>
-      <div class="shot-caption">Figure 8: Baseline run (v1), parameter alteration, stage skipping, and v2 diff (Part D).</div>
-    </div>
-  </div>
-
-  <h3 class="sub-header">D4: Stage Skipping Analysis & Metric Comparison (v1 vs v2)</h3>
-  <div class="grid-2">
-    <div>
-      <table class="metric-table">
+      <table class="acad-table">
         <thead>
           <tr>
-            <th>Metric / Param</th>
+            <th>Metric / Parameter</th>
             <th>v1 (128 units)</th>
             <th>v2 (256 units)</th>
-            <th>Observed Change</th>
+            <th>Observed Delta</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong><code>train.dense_units</code></strong></td>
+            <td><code>train.dense_units</code></td>
             <td>128</td>
             <td>256</td>
-            <td>+128 units</td>
+            <td>+128 units (2x model capacity)</td>
           </tr>
           <tr>
-            <td><strong><code>test_accuracy</code></strong></td>
+            <td><code>test_accuracy</code></td>
             <td>0.8666 (86.66%)</td>
             <td>0.8774 (87.74%)</td>
-            <td><strong style="color:#1a7f37;">+0.0108 (+1.08%)</strong></td>
+            <td><strong>+0.0108 (+1.08% improvement)</strong></td>
           </tr>
           <tr>
-            <td><strong><code>test_loss</code></strong></td>
+            <td><code>test_loss</code></td>
             <td>0.36053</td>
             <td>0.34467</td>
-            <td><strong style="color:#1a7f37;">-0.01586 (Improved)</strong></td>
+            <td><strong>-0.01586 (Improved generalization)</strong></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="card">
-      <p><strong>Why DVC Skipped Stages during v2 (<code>dvc repro</code>):</strong></p>
-      <p>DVC tracks content hashes of code, inputs, and parameters in <code>dvc.lock</code>. When <code>train.dense_units</code> changed:
-      1. <code>prepare</code> & <code>preprocess</code> depend only on raw data and preprocessing params (unchanged) &rarr; <strong>Skipped</strong>.
-      2. <code>train</code> depends on <code>train.dense_units</code> &rarr; <strong>Re-executed</strong>, producing new <code>model.h5</code>.
-      3. <code>evaluate</code> depends on <code>model.h5</code> &rarr; <strong>Re-executed</strong> automatically.</p>
+    <div class="callout-box">
+      <p><strong>Mechanics of DVC Stage Skipping (D4):</strong></p>
+      <p>When <code>train.dense_units</code> was scaled from 128 to 256 in <code>params.yaml</code>:
+      1. <code>prepare</code> & <code>preprocess</code> depend only on raw arrays and preprocess parameters (unchanged) &rarr; <strong>Skipped</strong>.
+      2. <code>train</code> detected a changed hash for <code>train.dense_units</code> &rarr; <strong>Re-executed</strong>, outputting new weights.
+      3. <code>evaluate</code> detected an updated dependency (<code>models/model.h5</code>) &rarr; <strong>Re-executed</strong> automatically.</p>
     </div>
   </div>
 </div>
 
 <!-- ================= PAGE 4 ================= -->
 <div class="page">
-  <div class="header-card">
-    <div class="header-title">
-      <h1>Assignment 3: End-to-End MLOps Pipeline Report</h1>
-      <h2>Collaboration Simulation, Conflict Resolution & Reproducibility (Part E)</h2>
-    </div>
-    <div class="meta-box">
-      <div><strong>Student:</strong> Muhammad Musab (Roll No: 23L-0806)</div>
-      <div><strong>Page:</strong> 4 of 4</div>
-    </div>
+  <div class="paper-header" style="padding-bottom: 3px; margin-bottom: 6px;">
+    <div class="paper-title" style="font-size: 11pt;">Part E: Collaboration, Conflict Resolution & Verification Audit</div>
+    <div class="author-meta">CS4069 Technical Report | Student: Muhammad Musab (23L-0806) | Page 4 of 4</div>
   </div>
 
-  <h2 class="section-header"><span>Part E: Simulated Collaboration & Dual Conflict Resolution</span><span>Tasks E1 – E5</span></h2>
-
+  <h2 class="sec-heading"><span>6. Part E: Collaboration Simulation & Dual Conflict Resolution</span><span>Section VI</span></h2>
   <div class="grid-2">
     <div>
-      <h3 class="sub-header">E1 & E2: Parallel Feature Branches</h3>
-      <p>Merged <code>dev</code> to <code>main</code>. Branch <code>teammate-sim</code> implemented Fashion-MNIST standardization: <code>(x - 0.2860) / 0.3530</code>. Branch <code>main</code> concurrently implemented centering: <code>(x / 255.0) - 0.5</code>. Both regenerated data via <code>dvc repro preprocess</code> and pushed to Google Drive.</p>
+      <h3 class="subsec-heading">6.1 Divergent Preprocessing Branches (E1, E2)</h3>
+      <p>Following merge of <code>dev</code> into <code>main</code>, branch <code>teammate-sim</code> implemented Fashion-MNIST standardization: <code>(x / 255.0 - 0.2860) / 0.3530</code>, regenerated processed data via <code>dvc repro preprocess</code>, and pushed to Drive. Concurrently on <code>main</code>, centering was implemented: <code>(x / 255.0) - 0.5</code>, regenerated, and pushed.</p>
 
-      <h3 class="sub-header">E3: Dual Conflict (Code & DVC Lock)</h3>
-      <p>Merging <code>teammate-sim</code> triggered two conflicts: a code conflict in <code>src/preprocess.py</code> and an md5 collision in <code>dvc.lock</code> for <code>data/processed</code>.</p>
-      <div class="shot-box">
-        <img src="screenshots/E_merge_conflict_resolution.png" alt="Merge Conflict Resolution">
-      </div>
-      <div class="shot-caption">Figure 9: Conflict markers in code and dvc.lock, reconciliation, and data regeneration (Part E).</div>
+      <h3 class="subsec-heading">6.2 Dual Code & Data Pointer Conflict (E3)</h3>
+      <p>Merging <code>teammate-sim</code> triggered two distinct collisions: a text collision in <code>src/preprocess.py</code> and a hash directory collision in <code>dvc.lock</code> for <code>data/processed</code> (Figure 9).</p>
+      <div class="fig-card"><img src="screenshots/E_merge_conflict_resolution.png" alt="Merge Conflict"></div>
+      <div class="fig-caption">Figure 9: Dual merge collision in code and dvc.lock, reconciliation, and regeneration (Part E).</div>
     </div>
 
     <div>
-      <h3 class="sub-header">E4 & E5: Authoritative Resolution & Reproducibility</h3>
-      <p>1. <strong>Code:</strong> Unified both approaches into a shared scale-then-standardize function:</p>
-      <div class="card" style="font-family: Consolas, monospace; font-size: 7.2pt; margin-bottom: 4px;">
-        FASHION_MEAN, FASHION_STD = 0.2860, 0.3530<br>
-        def normalize(x):<br>
-        &nbsp;&nbsp;x = x.astype("float32") / 255.0<br>
-        &nbsp;&nbsp;return (x - FASHION_MEAN) / FASHION_STD
-      </div>
-      <p>2. <strong>Data Lock:</strong> Because the merged code generates a <em>new 3rd version</em> of data, cleared conflict markers with <code>git checkout --ours dvc.lock</code>, synced workspace with <code>dvc checkout</code>, and regenerated with <code>dvc repro</code> (final accuracy: <strong>87.15%</strong>).</p>
-      <p>3. <strong>Reproducibility Proof:</strong> Running <code>dvc repro</code> immediately after merge confirmed all stages print <em>"didn't change, skipping"</em>.</p>
-      <div class="shot-box">
-        <img src="screenshots/E_final_git_graph.png" alt="Final Git Topology">
-      </div>
-      <div class="shot-caption">Figure 10: Complete unsquashed Git topology with tags, rebase, and merge commit.</div>
+      <h3 class="subsec-heading">6.3 Authoritative Resolution & Reproducibility (E4, E5)</h3>
+      <p>1. <strong>Code Reconciliation:</strong> Unified both branches by preserving the initial <code>[0, 1]</code> scaling and standardizing via empirical constants (mean=0.2860, std=0.3530).</p>
+      <p>2. <strong>Data Lock Resolution:</strong> Because the unified code yields a novel 3rd dataset version, conflict markers were cleared with <code>git checkout --ours dvc.lock</code>, synced via <code>dvc checkout</code>, and regenerated from source via <code>dvc repro</code> (final accuracy: <strong>87.15%</strong>).</p>
+      <p>3. <strong>Reproducibility Verification:</strong> Re-executing <code>dvc repro</code> immediately after merge confirmed all stages print <em>"didn't change, skipping"</em>.</p>
+      <div class="fig-card"><img src="screenshots/E_final_git_graph.png" alt="Final Topology"></div>
+      <div class="fig-caption">Figure 10: Complete unsquashed Git graph topology with tags, rebase, and merge commit.</div>
     </div>
   </div>
 
-  <h2 class="section-header"><span>Final Deliverables & Verification Checklist</span><span>Summary</span></h2>
-  <div class="grid-3">
-    <div class="card">
-      <strong>GitHub Repository:</strong><br>
-      • Branches: <code>main</code>, <code>dev</code>, <code>teammate-sim</code><br>
-      • Tags: <code>v1</code> (baseline), <code>v2</code> (256 units)<br>
-      • Unsquashed, linear + merge history
-    </div>
-    <div class="card">
-      <strong>DVC Remote Storage:</strong><br>
-      • Remote: Google Drive (ID: <code>1FdsWzNpKh...</code>)<br>
-      • Status: <em>Cache & remote in sync</em><br>
-      • Zero credentials committed to Git
-    </div>
-    <div class="card">
-      <strong>Pipeline Artifacts:</strong><br>
-      • <code>dvc.yaml</code> & <code>dvc.lock</code> committed<br>
-      • <code>metrics.json</code> & <code>confusion_matrix.png</code><br>
-      • 100% reproducible execution
-    </div>
-  </div>
+  <h2 class="sec-heading"><span>7. Deliverables & Audit Verification Matrix</span><span>Section VII</span></h2>
+  <table class="acad-table">
+    <thead><tr><th>Verification Item</th><th>Command Executed</th><th>Observed Outcome</th></tr></thead>
+    <tbody>
+      <tr><td>Unsquashed Git Topology</td><td><code>git log --oneline --graph --all</code></td><td>Verified: Complete history with hotfix, rebase, and teammate merge.</td></tr>
+      <tr><td>Tags & Experiment Tracking</td><td><code>git tag -l && git push origin --tags</code></td><td>Verified: <code>v1</code> (0.8666) and <code>v2</code> (0.8774) pushed to remote.</td></tr>
+      <tr><td>Idempotent Reproducibility</td><td><code>dvc repro</code> (post-merge check)</td><td>Verified: 100% reproducible; all stages reported skipped.</td></tr>
+      <tr><td>Cloud Remote Sync</td><td><code>dvc status -c</code></td><td>Verified: "Cache and remote 'gdrive_storage' are in sync".</td></tr>
+      <tr><td>Credential Isolation Audit</td><td><code>git ls-files | grep -iE 'cred|token|secret'</code></td><td>Verified: 0 credentials leaked; secret isolated in <code>.dvc/config.local</code>.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sec-heading"><span>8. Conclusion</span><span>Section VIII</span></h2>
+  <p>This implementation proves the viability of combining Git for semantic code deltas and DVC for content-addressed array caching. The automated pipeline ensures full tracking provenance, eliminating redundant computations and establishing deterministic multi-developer collaboration in MLOps.</p>
 </div>
 
 </body>
