@@ -15,8 +15,9 @@ def load_params():
 
 
 def normalize(x):
-    """Scale uint8 pixels [0, 255] to float32 [0, 1]. (Part E edits this function.)"""
-    return x.astype("float32") / 255.0
+    """Teammate approach: scale to [0, 1], then standardize with Fashion-MNIST mean/std."""
+    x = x.astype("float32") / 255.0
+    return (x - 0.2860) / 0.3530
 
 
 def main():
