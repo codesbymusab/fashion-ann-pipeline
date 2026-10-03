@@ -1,0 +1,10 @@
+preprocess:
+  test_size: 0.1        # fraction of the 60k training images held out as validation
+  seed: 42
+train:
+  seed: 42
+  dense_units: 128
+  dropout_rate: 0.2
+  learning_rate: 0.001
+  epochs: 10
+  batch_size: 32
